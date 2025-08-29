@@ -20,6 +20,11 @@ function makeUserId(fullName, dob) {
 const intRegex = /^-?\d+$/;           // integers, optional leading minus
 const alphaOnly = /^[A-Za-z]+$/;
 
+// ✅ Default route for testing in browser
+app.get("/", (req, res) => {
+  res.send("🚀 BFHL API is running! Use POST /bfhl to test the API.");
+});
+
 app.post('/bfhl', (req, res) => {
   try {
     const payload = req.body;
@@ -52,7 +57,6 @@ app.post('/bfhl', (req, res) => {
         sum += n;
         if (Math.abs(n) % 2 === 0) even_numbers.push(s); // keep as string
         else odd_numbers.push(s);
-        // integers don't contribute letters
       }
       // If token is alphabet only
       else if (alphaOnly.test(s)) {
